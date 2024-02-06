@@ -1,0 +1,68 @@
+#!/bin/bash
+#
+# Copyright © 2024 Joshua Rose
+# 
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+
+. bin/defs.sh
+. bin/util.sh
+. bin/check/font_installed.sh
+. bin/check/online.sh
+. bin/check/root.sh
+. bin/install/astro.sh
+. bin/install/bash.sh
+. bin/install/font.sh
+. bin/install/package.sh
+. bin/install/rust.sh
+. bin/install/treesitter.sh
+. bin/install/vim.sh
+. bin/install/zsh.sh
+
+# cleanup unneeded files if installed previously
+rm -fr $HOME/tmp
+rm -fr /tmp/vim
+rm -fr /tmp/packages
+rm -fr /tmp/rustup
+
+check_online
+check_not_root $USER
+
+# ADD ANY OTHER PACKAGES YOU WISH TO INSTALL HERE
+install_packages "git" "curl" "wget" "fzf" 
+
+# Choose one or more of the following fonts:
+install_fonts "NerdFontsSymbolsOnly.zip" "FiraCode.zip" "FiraMono.zip" "Agave.zip" "DroidSansMono.zip" "FantasqueSansMono.zip"
+
+
+
+if [ ! -f "$PATH_USER_BINARIES/zsh" ] || [ ! -f "$HOME/.zshrc" ]; then
+  read -p "Would you like to install zsh? (*Y/n) " -n 1 -r REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    install_zsh
+  else
+    install_bash
+  fi
+fi
+
+if [ ! -f "$PATH_USER_BINARIES/vim" ]; then
+  read -p "Would you like to install vim? (*Y/n) " -n 1 -r REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    install_vim
+  else
+    install_astro
+  fi
+fi
+
+if [ ! -d "$HOME/.rustup" ]; then
+  read -p "Would you like to install Rust? (*Y/n) " -n 1 -r REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    install_rust
+  fi
+fi
+
+exit 0
