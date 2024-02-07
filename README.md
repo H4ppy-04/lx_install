@@ -33,13 +33,8 @@ These are **required** for downloading **optional** programs *(see __Optional Pr
 
 These are **optional** programs that you can *choose* to install.
 
-#### Shell 🐢
-
  * [zsh](https://www.zsh.org) with [oh-my-zsh](https://ohmyz.sh/) also attached.
- * (or alternatively) [bash](https://www.gnu.org/software/bash) with a few tweaks such as fzf and colored manual pages.
-
-#### Terminal
-
+ * [bash](https://www.gnu.org/software/bash) with a few tweaks such as fzf and colored manual pages.
  * [vim](https://www.vim.org/) with the following tweaks/plugins:
    * The [Pathogen](https://tpo.pe/pathogen.vim) plugin manager.
    * [ctrlp](https://github.com/ctrlpvim/ctrlp.vim) for file navigation.
@@ -48,14 +43,10 @@ These are **optional** programs that you can *choose* to install.
    * [vim-sensible](https://tpope.io/vim/sensible.git) because everybody likes a few sensible defaults.
    * [vim-vinegar](https://github.com/tpope/vim-vinegar) for interactive file navigation *and* file refactoring.
    * [vim-repeat](https://tpope.io/vim/repeat.git) so that the `.` will also work with plugins.
- * (or alternatively) [astronvim](https://astronvim.com/).
-
-#### Rust 🦀
-
- * [Rust](https://www.rust-lang.org/) - *no alternative*
-
-
-
+ * [astronvim](https://astronvim.com/).
+ * [Rust](https://www.rust-lang.org/)
+ * [Eza](https://github.com/eza-community/eza/tree/main) which is an `ls` alternative
+ * [Tmux](https://github.com/tmux/tmux/wiki) with the option of [TPM](https://github.com/tmux-plugins/tpm)
 
 ## Fonts
 
@@ -74,7 +65,6 @@ Here are the fonts that I've chosen to be installed:
  * Agave
  * Droid Sans Mono
  * Fantasque Sans Mono
-
 
 
 
