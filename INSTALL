@@ -45,8 +45,11 @@ if [ ! -f "$PATH_USER_BINARIES/zsh" ] || [ ! -f "$HOME/.zshrc" ]; then
   read -p "Would you like to install zsh? (*Y/n) " -n 1 -r REPLY
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     install_zsh
+    rm -f $HOME/.zsh_history
+    stow --target=$HOME --dir=src/zsh/
   else
     install_bash
+    stow --target=$HOME --dir=src/bash/
   fi
 fi
 
@@ -54,6 +57,7 @@ if [ ! -f "$PATH_USER_BINARIES/vim" ]; then
   read -p "Would you like to install vim? (*Y/n) " -n 1 -r REPLY
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     install_vim
+    stow --target=$HOME --dir=src/vim
   else
     install_astro
   fi
@@ -84,8 +88,7 @@ if [ -x "$(command -v tmux)" ]; then
       # install tpm
       git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
       # link config file(s)
-      ln -s src/tmux/tmux.conf $HOME/.config/tmux/tmux.conf
-      ln -s src/tmux/workspace.conf $HOME/.config/tmux/workspace.conf
+      stow --target=$HOME/.config/tmux --dir=src/tmux
     else
       read -p "Would you like to install a plugin manager for tmux? (recommended)" -n 1 -r REPLY
       if [[ $REPLY =~ ^[Yy]$ ]]; then

@@ -1,3 +1,7 @@
 lucario378/
 tags
 src/zsh/.zsh_history
+src/vim/.vim/pack/
+src/vim/.vim/spell/
+src/vim/.vim/autoload/
+src/vim/.vim/.netrwhist
