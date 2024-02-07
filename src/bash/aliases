@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # cargo
-if [ -x "$(command -v cargo)" ]; then
+if [ "$(command -v cargo 2>&1 )" ]; then
   alias c=cargo
   alias cr='cargo run'
   alias cf='cargo fmt'
@@ -20,20 +20,20 @@ fi
 
 # alias 'cloc'='cloc --summary-cutoff=m:500 --sum-one src --by-percent=cmb '
 
-if [ -x "$(command -v ctags)" ]; then
+if [ "$(command -v ctags 2>&1 )" ]; then
   alias tt="ctags -R src --exclude=env/,.git/,venv/"
   alias ctags="ctags -R src"
 fi
 
 # git
-if [ -x "$(command -v git)" ]; then
+if [ "$(command -v git 2>&1 )" ]; then
   alias g="git"
   alias gs="git status --short"
   alias gd="git diff --compact-summary"
 fi
 
 # khal
-if [ -x "$(command -v khal)" ]; then
+if [ "$(command -v khal 2>&1 )" ]; then
   alias k_='khal'
   alias k='khal list'
   alias kh='k_'
@@ -61,28 +61,26 @@ alias md='mkdir'
 alias rd='rm -rf'
 alias mp='mkdir -p'
 
-if [ -x "$(command -v batcat)" ] || [ -x "$(command -v bat)"]; then
+if [ "$(command -v batcat 2>&1 )" ] || [ "$(command -v bat 2>&1 )"]; then
   alias bat='batcat --theme base16 -p'
 fi
 
-if [ -x "$(command -v neofetch)" ]; then
+if [ "$(command -v neofetch 2>&1 )" ]; then
   alias nf='neofetch'
 fi
 
-if [ -x "$(command -v python)" ] || [ -x "$(command -v python3)"]; then
-  alias av=". $2/bin/activate"
-fi
+alias av=". $2/bin/activate"
 
-if [ -x "$(command -v isort)" ]; then
+if [ "$(command -v isort 2>&1 )" ]; then
   alias isort="isort  --gitignore --skip=venv,env "
 fi
 
-if [ -x "$(command -v black)" ]; then
+if [ "$(command -v black 2>&1 )" ]; then
   alias black="black . --exclude=env "
 fi
 
 # tlp (laptop power saving)
-if [ -x "$(command -v tlp)" ]; then
+if [ "$(command -v tlp 2>&1 )" ]; then
   alias tpb="tlp-stat -b"
   alias tpc="tlp-stat -c"
   alias tpss="tlp-stat -s"
@@ -93,7 +91,7 @@ if [ -x "$(command -v tlp)" ]; then
 fi
 
 # tmux
-if [ -x "$(command -v tmux)" ]; then
+if [ "$(command -v tmux 2>&1 )" ]; then
   alias t="tmux"
   alias tn="tmux new"
   alias tls="tmux ls"
@@ -107,7 +105,7 @@ if [ -x "$(command -v tmux)" ]; then
 fi
 
 # when (a calendary application)
-if [ -x "$(command -v when)" ]; then
+if [ "$(command -v when 2>&1 )" ]; then
   alias i='when'     # print the day (default)
   alias ii='when i'  # print the day 
   alias iy='when y'  # print the year
@@ -120,7 +118,7 @@ if [ -x "$(command -v when)" ]; then
 fi
 
 # eza (which is basically what neovim is to vim)
-if [ -x "$(command -v eza)" ]; then
+if [ "$(command -v eza 2>&1 )" ]; then
   alias ls='eza'                                                         # ls
   alias l='eza -lbF --git'                                               # list, size, type, git
   alias ll='eza -lbGF --git'                                             # long list

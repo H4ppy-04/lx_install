@@ -101,5 +101,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 path+=("$HOME/.cargo/bin")
 
-source
-[[ -f $HOME/.config/bash/aliases ]] && source $HOME/.config/bash/aliases
+[[ -f $HOME/dotfiles/src/bash/aliases ]] && source $HOME/dotfiles/src/bash/aliases

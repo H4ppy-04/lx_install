@@ -26,6 +26,8 @@
 # cleanup unneeded files if installed previously
 rm -fr $HOME/tmp
 rm -fr /tmp/vim
+rm -fr /tmp/aliases
+rm -fr /tmp/bashrc
 rm -fr /tmp/packages
 rm -fr /tmp/rustup
 
@@ -41,24 +43,55 @@ install_packages "git" "curl" "wget" "fzf" "gpg"
 install_fonts "NerdFontsSymbolsOnly.zip" "FiraCode.zip" "FiraMono.zip" "Agave.zip" "DroidSansMono.zip" "FantasqueSansMono.zip"
 
 
-if [ ! -f "$PATH_USER_BINARIES/zsh" ] || [ ! -f "$HOME/.zshrc" ]; then
+if [ -f "$PATH_USER_BINARIES/zsh" ] || [ -f "$HOME/.zshrc" ]; then
+  read -p "Existing zsh installation found. Would you like to overwrite it? (y/*N) " -n 1 -r REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    [ -f $HOME/.zsh_history ] && rm $HOME/.zsh_history
+    [ -f $HOME/.zshrc ] && rm $HOME/.zshrc
+    install_zsh
+    stow --target=$HOME --dir=src/zsh/
+  else
+    if [ ! -f "$HOME/.bashrc" ]; then
+      install_bash
+      stow --target=$HOME --dir=src/bash/
+    fi
+  fi
+else
   read -p "Would you like to install zsh? (*Y/n) " -n 1 -r REPLY
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     install_zsh
-    rm -f $HOME/.zsh_history
     stow --target=$HOME --dir=src/zsh/
   else
-    install_bash
-    stow --target=$HOME --dir=src/bash/
+    if [ ! -f "$HOME/.bashrc" ]; then
+      install_bash
+      stow --target=$HOME --dir=src/bash/
+    fi
   fi
 fi
 
-if [ ! -f "$PATH_USER_BINARIES/vim" ]; then
+if [ -f "$PATH_USER_BINARIES/vim" ]; then
+  read -p "Existing vim installation found. Would you like to overwrite it? (y/*N) " -n 1 -r REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    install_vim
+    stow --target=$HOME --dir=src/vim
+  fi
+else
   read -p "Would you like to install vim? (*Y/n) " -n 1 -r REPLY
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     install_vim
     stow --target=$HOME --dir=src/vim
-  else
+  fi
+fi
+
+if [ -f "$PATH_USER_BINARIES/nvim" ]; then
+  read -p "Existing neovim installation found. Would you like to overwrite it? (y/*N) " -n 1 -r REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    rm -rf $HOME/.config/nvim
+    install_astro
+  fi
+else
+  read -p "Would you like to install astronvim? (*Y/n) " -n 1 -r REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
     install_astro
   fi
 fi
@@ -77,7 +110,31 @@ if [ ! -x "$(command -v eza)" ]; then
   fi
 fi
 
-if [ ! -x "$(command -v tmux)" ]; then
+if [ -x "$(command -v tmux)" ]; then
+  read -p "Existing tmux installation found. Would you like to overwrite it? (y/*N) " -n 1 -r REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    mkdir -p ~/.tmux/plugins ~/.config/tmux
+    install_packages "tmux"
+
+    read -p "Would you like to install a pre-populated tmux config file?" -n 1 -r REPLY
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      # install tpm
+      git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+      # link config file(s)
+      stow --target=$HOME/.config/tmux --dir=src/tmux
+    else
+      read -p "Would you like to install a plugin manager for tmux? (recommended)" -n 1 -r REPLY
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # install tpm
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+        # add tpm to the config
+        touch ~/.config/tmux/tmux.conf
+        echo "set -g @plugin 'tmux-plugins/tpm'" >> ~/.config/tmux/tmux.conf
+        echo "run '~/.tmux/plugins/tpm/tpm'" >> ~/.config/tmux/tmux.conf
+      fi
+    fi
+  fi
+else
   read -p "Would you like to install tmux? (*Y/n) " -n 1 -r REPLY
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     mkdir -p ~/.tmux/plugins ~/.config/tmux
