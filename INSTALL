@@ -45,8 +45,8 @@ install_fonts "NerdFontsSymbolsOnly.zip" "FiraCode.zip" "FiraMono.zip" "Agave.zi
 
 if [ -L $PATH_USER_BINARIES/zsh ] || [ -L $HOME/.zshrc ]; then
   read -p "Existing zsh installation found. Would you like to overwrite it? (y/*N) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     [ -L $HOME/.zsh_history ] && rm $HOME/.zsh_history
     [ -L $HOME/.zshrc ] && rm $HOME/.zshrc
     [ -d $HOME/.oh-my-zsh/ ] && rm -rf $HOME/.oh-my-zsh/
@@ -57,13 +57,13 @@ if [ -L $PATH_USER_BINARIES/zsh ] || [ -L $HOME/.zshrc ]; then
     # once zsh is installed, remove the installatino
     # set by omz and replace it with a custom one.
     [ -L $HOME/.zshrc ] && rm $HOME/.zshrc
-    ln -s src/zsh/.zshrc $HOME/.zshrc
-    source src/zsh/.zshrc
+    ln -s -f $HOME/dotfiles/src/zsh/.zshrc $HOME/.zshrc
+    source $HOME/dotfiles/src/zsh/.zshrc
   fi
 else
   read -p "Would you like to install zsh? (*Y/n) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     [ -L $HOME/.zsh_history ] && rm $HOME/.zsh_history
     [ -d $HOME/.oh-my-zsh/ ] && rm -rf $HOME/.oh-my-zsh/
 
@@ -73,87 +73,87 @@ else
     # once zsh is installed, remove the installatino
     # set by omz and replace it with a custom one.
     [ -L $HOME/.zshrc ] && rm $HOME/.zshrc
-    ln -s src/zsh/.zshrc $HOME/.zshrc
+    ln -s -f $HOME/dotfiles/src/zsh/.zshrc $HOME/.zshrc
   else
     if [ ! -L $HOME/.bashrc ]; then
       install_bash
       [ -L $HOME/aliases ] && rm $HOME/aliases
-      ln -s src/bash/aliases $HOME/aliases
-      ln -s src/bash/bashrc $HOME/.bashrc
+      ln -s -f $HOME/dotfiles/src/bash/aliases $HOME/aliases
+      ln -s -f $HOME/dotfiles/src/bash/bashrc $HOME/.bashrc
     fi
   fi
 fi
 
 if [ -L "$PATH_USER_BINARIES/vim" ]; then
   read -p "Existing vim installation found. Would you like to overwrite it? (y/*N) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     install_vim
     [ -d $HOME/.vim ] && rm -rf $HOME/.vim
     [ -L $HOME/.vimrc ] && rm -rf $HOME/.vimrc
-    ln -s src/vim/.vim/ $HOME/.vim
-    ln -s src/vim/.vimrc $HOME/.vimrc
+    cp -rf $HOME/dotfiles/src/vim/.vim/ $HOME/.vim
+    ln -s -f $HOME/dotfiles/src/vim/.vimrc $HOME/.vimrc
   fi
 else
   read -p "Would you like to install vim? (*Y/n) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     install_vim
-    ln -s src/vim/.vim/ $HOME/.vim
-    ln -s src/vim/.vimrc $HOME/.vimrc
+    cp -rf $HOME/dotfiles/src/vim/.vim/ $HOME/.vim
+    ln -s -f $HOME/dotfiles/src/vim/.vimrc $HOME/.vimrc
   fi
 fi
 
 if [ -L "$PATH_USER_BINARIES/nvim" ]; then
   read -p "Existing neovim installation found. Would you like to overwrite it? (y/*N) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     rm -rf $HOME/.config/nvim
     install_astro
   fi
 else
   read -p "Would you like to install astronvim? (*Y/n) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     install_astro
   fi
 fi
 
 if [ ! -d "$HOME/.rustup" ]; then
   read -p "Would you like to install Rust? (*Y/n) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     install_rust
   fi
 fi
 
 if [ ! -x "$(command -v eza)" ]; then
   read -p "Would you like to install eza (ls alternative)? (*Y/n) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     . bin/install/eza.sh
   fi
 fi
 
 if [ -x "$(command -v tmux)" ]; then
   read -p "Existing tmux installation found. Would you like to overwrite it? (y/*N) " -n 1 -r REPLY
+  echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 
     mkdir -p ~/.tmux/plugins ~/.config/tmux
     install_packages "tmux"
 
     read -p "Would you like to install a pre-populated tmux config file?" -n 1 -r REPLY
+    echo 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-      echo 
       # install tpm
       git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
       # link config file(s)
       [ -d "$HOME/.config/tmux" ] && rm -rf $HOME/.config/tmux
-      ln -s src/tmux $HOME/.config/tmux
+      ln -s -f $HOME/dotfiles/src/tmux $HOME/.config/tmux
     else
       read -p "Would you like to install a plugin manager for tmux? (recommended)" -n 1 -r REPLY
+      echo 
       if [[ $REPLY =~ ^[Yy]$ ]]; then
-        echo 
         # install tpm
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
         # add tpm to the config
@@ -165,14 +165,14 @@ if [ -x "$(command -v tmux)" ]; then
   fi
 else
   read -p "Would you like to install tmux? (*Y/n) " -n 1 -r REPLY
+  echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo
     mkdir -p ~/.tmux/plugins ~/.config/tmux
     install_packages "tmux"
 
     read -p "Would you like to install a pre-populated tmux config file?" -n 1 -r REPLY
+    echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-      echo
       # install tpm
       git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
       if [ ! -L ~/.config/tmux/tmux.conf]; then
@@ -182,12 +182,12 @@ else
         echo "run '~/.tmux/plugins/tpm/tpm'" >> ~/.config/tmux/tmux.conf
         # link config file(s)
         [ -d "$HOME/.config/tmux" ] && rm -rf $HOME/.config/tmux
-        ln -s src/tmux $HOME/.config/tmux
+        ln -s -f $HOME/dotfiles/src/tmux $HOME/.config/tmux
       fi
     else
       read -p "Would you like to install a plugin manager for tmux? (recommended)" -n 1 -r REPLY
+      echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
-        echo
         # install tpm
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
         # add tpm to the config

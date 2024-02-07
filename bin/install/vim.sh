@@ -3,7 +3,7 @@ install_vim() {
   sudo apt update
   sudo apt install vim -y
 
-  # rm -rf {/tmp/vim,~/.vimrc,~/.vim}
+  rm -rf {/tmp/vim,~/.vimrc,~/.vim}
 
   git clone https://gist.github.com/Trivoz/7ae1f637a7ac98c7f14ebcba53c474aa /tmp
   mv /tmp/vim/.vimrc ~/.vimrc
