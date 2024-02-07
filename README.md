@@ -1,4 +1,4 @@
-<div align="center"><h1>Trivoz's installation script</h1></div>
+<div align="center"><h1>Trivoz's Installation Script</h1></div>
 
 **This is a script that is specifically designed to suit my needs**. *With that said...*
 
@@ -22,6 +22,11 @@ These are **required** for downloading **optional** programs *(see __Optional Pr
  * [fzf](https://github.com/junegunn/fzf)  - a command line fuzzy finder
 
 
+## Installation
+
+ 1. [Clone](https://github.com/git-guides/git-clone) this repository into `$HOME/dotfiles` (backup your existing files)
+ 2. Give the `INSTALL` file executable permissions with `chmod +x INSTALL`
+ 3. Run the `INSTALL` file via `./INSTALL`
 
 
 ## Optional Programs

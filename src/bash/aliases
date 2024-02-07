@@ -1,0 +1,137 @@
+#!/usr/bin/bash
+
+# cargo
+if [ -x "$(command -v cargo)" ]; then
+  alias c=cargo
+  alias cr='cargo run'
+  alias cf='cargo fmt'
+  alias cn='cargo new'
+  alias cc='cargo check'
+  alias ct='cargo test'
+  alias ca='cargo add'
+  alias cdo='cargo d --open'
+  alias cb='cargo build'
+  alias cbr='cargo build --release'
+  alias crr='cargo run --release'
+  alias ctr='cargo test --release'
+  alias cv="cargo llvm-cov"
+  alias fmt='cargo fmt'
+fi
+
+# alias 'cloc'='cloc --summary-cutoff=m:500 --sum-one src --by-percent=cmb '
+
+if [ -x "$(command -v ctags)" ]; then
+  alias tt="ctags -R src --exclude=env/,.git/,venv/"
+  alias ctags="ctags -R src"
+fi
+
+# git
+if [ -x "$(command -v git)" ]; then
+  alias g="git"
+  alias gs="git status --short"
+  alias gd="git diff --compact-summary"
+fi
+
+# khal
+if [ -x "$(command -v khal)" ]; then
+  alias k_='khal'
+  alias k='khal list'
+  alias kh='k_'
+  alias ka='k_ at'
+  alias kc='k_ calendar'
+  alias ke='k_ edit'
+  alias ki='k_ import'
+  alias kk='k_ interactive'
+  alias kn='k_ new'
+  alias ks='k_ search '
+  alias kp='k_ printcalendars'
+  alias kpf='k_ printformats'
+fi
+
+# misc
+alias j=jobs
+alias p=w
+alias f=fg
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias grep='grep --color=auto'
+alias less='less -R'
+alias md='mkdir'
+alias rd='rm -rf'
+alias mp='mkdir -p'
+
+if [ -x "$(command -v batcat)" ] || [ -x "$(command -v bat)"]; then
+  alias bat='batcat --theme base16 -p'
+fi
+
+if [ -x "$(command -v neofetch)" ]; then
+  alias nf='neofetch'
+fi
+
+if [ -x "$(command -v python)" ] || [ -x "$(command -v python3)"]; then
+  alias av=". $2/bin/activate"
+fi
+
+if [ -x "$(command -v isort)" ]; then
+  alias isort="isort  --gitignore --skip=venv,env "
+fi
+
+if [ -x "$(command -v black)" ]; then
+  alias black="black . --exclude=env "
+fi
+
+# tlp (laptop power saving)
+if [ -x "$(command -v tlp)" ]; then
+  alias tpb="tlp-stat -b"
+  alias tpc="tlp-stat -c"
+  alias tpss="tlp-stat -s"
+  alias tps="tlp-stat"
+  alias tpt="tlp-stat -t"
+  alias tpp="tlp-stat -p"
+  alias tpw="tlp-stat -w"
+fi
+
+# tmux
+if [ -x "$(command -v tmux)" ]; then
+  alias t="tmux"
+  alias tn="tmux new"
+  alias tls="tmux ls"
+  alias tks="tmux kill-session"
+  alias tkw="tmux kill-window"
+  alias tk="tmux kill-"
+  alias td="tmux detach"
+  alias trw="tmux rename-window"
+  alias trs="tmux rename-session"
+  alias ta="tmux attach"
+fi
+
+# when (a calendary application)
+if [ -x "$(command -v when)" ]; then
+  alias i='when'     # print the day (default)
+  alias ii='when i'  # print the day 
+  alias iy='when y'  # print the year
+  alias im='when m'  # print the month
+  alias iw='when w'  # print the week
+  alias id='when i'  # print the day 
+  alias ic='when c'  # print calendars, not showing items
+  alias ie='when e'  # invoke vim
+  alias ij='when j'  # print modified julian day
+fi
+
+# eza (which is basically what neovim is to vim)
+if [ -x "$(command -v eza)" ]; then
+  alias ls='eza'                                                         # ls
+  alias l='eza -lbF --git'                                               # list, size, type, git
+  alias ll='eza -lbGF --git'                                             # long list
+  alias llm='eza -lbGF --git --sort=modified'                            # long list, modified date sort
+  alias la='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
+  alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+  alias lS='eza -1'                                                      # one column, just names
+  alias lt='eza --tree --level=2'                                        # tree
+else
+  alias ls='ls -h --color=auto'
+  alias la='ls -lah --color=auto'
+fi
+
+# vi:ft=sh
