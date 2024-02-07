@@ -70,14 +70,14 @@ if [ ! -d "$HOME/.rustup" ]; then
   fi
 fi
 
-if [ -x "$(command -v eza)" ]; then
+if [ ! -x "$(command -v eza)" ]; then
   read -p "Would you like to install eza (ls alternative)? (*Y/n) " -n 1 -r REPLY
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     . bin/install/eza.sh
   fi
 fi
 
-if [ -x "$(command -v tmux)" ]; then
+if [ ! -x "$(command -v tmux)" ]; then
   read -p "Would you like to install tmux? (*Y/n) " -n 1 -r REPLY
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     mkdir -p ~/.tmux/plugins ~/.config/tmux
