@@ -21,6 +21,8 @@ log() {
 }
 
 export_packages() {
-  data=$(sudo apt list -qq 2> /dev/null)
-  echo $data > $1
+  if [ "$PKGMGR" = "apt" ]; then
+    data=$(sudo apt list -qq 2> /dev/null)
+    echo $data > $1
+  fi
 }

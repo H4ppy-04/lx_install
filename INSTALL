@@ -34,7 +34,12 @@ rm -fr /tmp/rustup
 check_online
 check_not_root $USER
 
-sudo apt update
+# shit fails if this isn't here TODO: intgerate this better
+mkdir -p $HOME/dotfiles/
+
+# TODO: additional check for /usr/bin 
+test -f /bin/pacman && export PKGMGR=pacman
+test -f /bin/apt && export PKGMGR=apt
 
 # ADD ANY OTHER PACKAGES YOU WISH TO INSTALL HERE
 install_packages "git" "curl" "wget" "fzf" "gpg"
@@ -91,16 +96,15 @@ if [ -L "$PATH_USER_BINARIES/vim" ]; then
     install_vim
     [ -d $HOME/.vim ] && rm -rf $HOME/.vim
     [ -L $HOME/.vimrc ] && rm -rf $HOME/.vimrc
-    cp -rf $HOME/dotfiles/src/vim/.vim/ $HOME/.vim
-    ln -s -f $HOME/dotfiles/src/vim/.vimrc $HOME/.vimrc
+    cp -rf $PWD/src/vim/.vim/ $HOME/.vim
+    ln -s -f $PWD/src/vim/.vimrc $HOME/.vimrc
   fi
 else
   read -p "Would you like to install vim? (*Y/n) " -n 1 -r REPLY
   echo 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     install_vim
-    cp -rf $HOME/dotfiles/src/vim/.vim/ $HOME/.vim
-    ln -s -f $HOME/dotfiles/src/vim/.vimrc $HOME/.vimrc
+    ln -s -f $PWD/vim/.vimrc $HOME/.vimrc
   fi
 fi
 
@@ -202,3 +206,5 @@ else
 fi
 
 exit 0
+
+# vi: ft=bash

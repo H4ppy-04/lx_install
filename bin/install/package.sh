@@ -12,7 +12,8 @@ install_packages() {
   for i in ${1:+"$@"}; do
     exists=$(cat $plist | grep -c $i | wc -c)
     if [ $exists -eq 0 ]; then
-      sudo apt install -qq -o=Dpkg::Use-Pty=0 $i -y
+      test -f /bin/pacman && sudo pacman -S $i
+      test -f /bin/apt && sudo apt install -qq -o=Dpkg::Use-Pty=0 $i -y
     fi
   done
   return 0
