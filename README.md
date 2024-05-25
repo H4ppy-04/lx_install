@@ -1,14 +1,14 @@
 <div align="center"><h1>Trivoz's Installation Script</h1></div>
 
-**This is a script that is specifically designed to suit my needs**. *With that said...*
+**This is specifically designed to suit my needs**. *With that said...*
 
 For beginners and experts alike, setting up a bunch of applications is laborious and exhausting
-so I have made a few tweaks to my installation such that it is more accessible to
-people that are looking for a quick and easy Linux installation script.
+so I have made a few tweaks to my installation so that it is more accessible to
+people who are looking for a quick and easy Linux installation script.
 
-I'd also like to mention that if you are looking for an installation script, there are other scripts on GitHub that would likely suit your needs much closer than this repository.
+If you are looking for a more general installation script, other scripts on GitHub would suit your needs much closer than this repository.
 For example, I've found that [Larbs](https://larbs.xyz/) aligns well with my preferences.
-If you use this script: **Thank you**. When people file issues and PR's telling me what will break this thing, I can focus on improving it.
+If you use this script: **Thank you**. When people file issues and PRs tell me what will break this thing, I can focus on improving it.
 
 
 
@@ -34,7 +34,7 @@ These are **required** for downloading **optional** programs *(see __Optional Pr
 These are **optional** programs that you can *choose* to install.
 
  * [zsh](https://www.zsh.org) with [oh-my-zsh](https://ohmyz.sh/) also attached.
- * [bash](https://www.gnu.org/software/bash) with a few tweaks such as fzf and colored manual pages.
+ * [bash](https://www.gnu.org/software/bash) with tweaks such as fzf and coloured manual pages.
  * [vim](https://www.vim.org/) with the following tweaks/plugins:
    * The [Pathogen](https://tpo.pe/pathogen.vim) plugin manager.
    * [ctrlp](https://github.com/ctrlpvim/ctrlp.vim) for file navigation.
@@ -42,7 +42,7 @@ These are **optional** programs that you can *choose* to install.
    * [vim-surround](https://github.com/tpope/vim-surround) because its awesome.
    * [vim-sensible](https://tpope.io/vim/sensible.git) because everybody likes a few sensible defaults.
    * [vim-vinegar](https://github.com/tpope/vim-vinegar) for interactive file navigation *and* file refactoring.
-   * [vim-repeat](https://tpope.io/vim/repeat.git) so that the `.` will also work with plugins.
+   * [vim-repeat](https://tpope.io/vim/repeat.git) so that `.` will also work with plugins.
  * [astronvim](https://astronvim.com/).
  * [Rust](https://www.rust-lang.org/)
  * [Eza](https://github.com/eza-community/eza/tree/main) which is an `ls` alternative
@@ -50,10 +50,10 @@ These are **optional** programs that you can *choose* to install.
 
 ## Fonts
 
-**Nerd fonts** are cool because they combine multiple characters into a single glyph which makes programming and looking at code much easier.
-I think [NerdFonts.com](https://www.nerdfonts.com/) describes it very well.
+**Nerd fonts** are cool because they combine multiple characters into a single glyph, making programming and looking at code much easier.
+I think [NerdFonts.com](https://www.nerdfonts.com/) describes it well.
 
-> Nerd Fonts patches developer targeted fonts with a high number of glyphs (icons). 
+> Nerd Fonts patches developer-targeted fonts with many glyphs (icons). 
 >
 > \- **NerdFonts.com**
 
@@ -70,15 +70,14 @@ Here are the fonts that I've chosen to be installed:
 
 ## Requirements
 
- * You must have internet connection for this to work!
+ * You must have an internet connection for this to work!
  * You must be running either Debian, Ubuntu or a GNU/Linux distribution that uses `apt` as its native package manager.
- * You must have a decent amount of storage. I haven't measured the storage precisely, but generally when installing Linux you should have 15-20 GB (at least!).
- 
+ * You must have a decent amount of storage. I haven't measured the storage precisely, but generally, when installing Linux you should have 15-20 GB (at least!).
 
 
 ## Thanks 
 
-A lot of the good stuff in this script came from this file lucario378 whom has been monolithically helpful throughout the development process.
+A lot of the good stuff in this script came from this file lucario378 which has been monolithically helpful throughout the development process.
 I also used stack overflow when I got stuck. Shout out to these awesome humans:
 
   * C0deDaedalus
