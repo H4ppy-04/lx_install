@@ -1,4 +1,4 @@
-<div align="center"><h1>Trivoz's Installation Script</h1></div>
+<div align="center"><h1>Happy's Installation Script</h1></div>
 
 **This is specifically designed to suit my needs**. *With that said...*
 
